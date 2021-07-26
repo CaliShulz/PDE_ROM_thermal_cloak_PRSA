@@ -1,0 +1,26 @@
+
+
+# exclude everything
+archive_sim/*
+archive_data/*
+
+# exception to the rule
+!archive_sim/.gitkeep
+!archive_data/.gitkeep 
+
+*.asv
+
+*.mat
+
+*.avi
+
+*.bmp
+
+*.png
+
+!mesh_boar_cloak.mat
+!mesh_boar_cloak_fine.mat
+!mesh_circular_cloak.mat
+!mesh_circular_cloak_coarse.mat
+!mesh_disconnected_cloak.mat
+
