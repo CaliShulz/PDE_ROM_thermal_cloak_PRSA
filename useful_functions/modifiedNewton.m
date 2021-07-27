@@ -16,7 +16,7 @@ hist.f = [];
 
 fprintf( ' Modified Newton Method \n ' ) ;
 fprintf( ' Current Cost  || Iteration  || Grad norm || Tau \n ' )
-
+tau = 1;
 
 for it=1:max_iter
 
@@ -32,7 +32,9 @@ for it=1:max_iter
 
         [N_u,dimt] = size(grad_J);
                           
+        fprintf( '     %5.2f     ||     %d/%d  ||     %d  ||   %d  \n ' , J(end) , it , max_iter , norm(grad_J(:)) , tau);
 
+        
         if beta_g == 0
             delta_u = M_u \ (-1/beta*grad_J);
         else
@@ -56,7 +58,6 @@ for it=1:max_iter
 
         u = u + tau*delta_u;
         
-        fprintf( '%14.2f||     %d/%d ||     %d      ||   %d  \n ' , J(end) , it , max_iter , norm(grad_J(:)) , tau);
         
         %TODO exit cycle once tolerance is reached
         time_iter = toc;

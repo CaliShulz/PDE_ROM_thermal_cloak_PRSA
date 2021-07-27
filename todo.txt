@@ -4,10 +4,12 @@
 
 - plot different betas different cases eta comparison
 
-- change train dimension in T_POD_training to 25
+- change train dimension in T_POD_training to 25 or more
 
 - align ModifiedNewton properly
 
 - check Newton if plot already first iteration and not initial
 
 - use mesh_coarse to check plots and working code!
+
+- effect of theta on adjoint and state

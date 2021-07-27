@@ -1,17 +1,13 @@
+function [] = main_FOM(mesh_name)
+
 %% Solve FOM OCP transient and SS and compare results
 
 % Modified OtD method
 % Final condition on adjoint p_N = p_SS
 
 
-% Setup necessary imports
-clear all
-clc
-close all
-
 sslash = path_setup() ; % setup path 
 
-mesh_name = 'mesh_circular_cloak';
 load(strcat('archive_data',sslash,'FOM_setup_',mesh_name));
 
 % save basis vector and matrices for affine evaluation
@@ -32,7 +28,7 @@ dt = param.dt;
 FOM.beta   = 1e-07;
 FOM.alfa_T = 0;                                     % weight on terminal cost
 FOM.alfa_R = 1;                                     % weight on running cost
-param.max_iter  = 5;
+param.max_iter  = 25;
 param.tol       = 1e-06;
 
 % System dimension
@@ -40,11 +36,11 @@ param.tol       = 1e-06;
 [N_q,N_u] = size(FOM.B);
 
 % Solve test FOM - Steady-state
-mu_test = [3.5 10000 100 1e-10];
+mu_test = [3.5 10000 0 0];
 
 tic;
-[FOM] = evaluate_theta_terms(mu_test,FOM)
-[FOM] = assemble_ato_SS(FOM)
+[FOM] = evaluate_theta_terms(mu_test,FOM);
+[FOM] = assemble_ato_SS(FOM);
 % Solve for snapshot AtO
 x_opt = FOM.A_big \ FOM.F_big;
 t_FOM_SS = toc;
@@ -133,8 +129,8 @@ set(title_temp,'FontSize',font_title);
 axis square
 grid on
 
-yh = get(gca,'ylabel') % handle to the label object
-adjoint_label_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+adjoint_label_pos = get(yh,'position'); % get the current position property
 
 
 
@@ -155,8 +151,8 @@ set(legend_temp,'FontSize',font_legend);
 title_temp = title('Tracking error','interpreter','latex');
 set(title_temp,'FontSize',font_title);
 
-yh = get(gca,'ylabel') % handle to the label object
-current_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+current_pos = get(yh,'position'); % get the current position property
 current_pos(1) = adjoint_label_pos(1);
 set(yh,'position',current_pos)   % set the new position
 
@@ -183,8 +179,8 @@ title_temp = title('State norm','interpreter','latex');
 set(title_temp,'FontSize',font_title);
 axis square
 grid on
-yh = get(gca,'ylabel') % handle to the label object
-current_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+current_pos = get(yh,'position') ; % get the current position property
 current_pos(1) = adjoint_label_pos(1);
 set(yh,'position',current_pos)   % set the new position
 
@@ -205,8 +201,8 @@ title_temp = title('Running cost','interpreter','latex');
 set(title_temp,'FontSize',font_title);
 axis square
 grid on
-yh = get(gca,'ylabel') % handle to the label object
-current_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+current_pos = get(yh,'position'); % get the current position property
 current_pos(1) = adjoint_label_pos(1);
 set(yh,'position',current_pos)   % set the new position
 
@@ -231,8 +227,8 @@ title_temp = title('Control norm','interpreter','latex');
 set(title_temp,'FontSize',font_title);
 axis square
 grid on
-yh = get(gca,'ylabel') % handle to the label object
-current_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+current_pos = get(yh,'position'); % get the current position property
 current_pos(1) = adjoint_label_pos(1);
 set(yh,'position',current_pos)   % set the new position
 
@@ -258,8 +254,8 @@ set(label_temp,'FontSize',font_label);
 title_temp = title('Reference norm','interpreter','latex');
 set(title_temp,'FontSize',font_title);
 axis square
-yh = get(gca,'ylabel') % handle to the label object
-current_pos = get(yh,'position') % get the current position property
+yh = get(gca,'ylabel'); % handle to the label object
+current_pos = get(yh,'position'); % get the current position property
 current_pos(1) = adjoint_label_pos(1);
 set(yh,'position',current_pos)   % set the new position
 
@@ -280,7 +276,7 @@ end
 % % Save txt file with parameters of simulation
 % 
 % %generate report txt file
-file_id = fopen(strcat(pwd,sslash,folder_name,sslash,'report','.txt'),'w')
+file_id = fopen(strcat(pwd,sslash,folder_name,sslash,'report','.txt'),'w');
 
 fprintf(file_id,'################################### \n');
 fprintf(file_id,'\n');
@@ -352,7 +348,7 @@ end
 close(video_controlled_FOM);
 
 
-
+end
 
 function [video_object] = setup_video(name_video)
 
