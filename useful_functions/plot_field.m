@@ -66,6 +66,9 @@ colormap(jet);
 caxis(limits)
 view(0,90)
 colorbar;
+
+set(gcf, 'color', 'white');   
+set(gca, 'color', 'white');
     
     
 end

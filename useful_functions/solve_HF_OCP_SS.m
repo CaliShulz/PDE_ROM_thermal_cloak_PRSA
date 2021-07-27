@@ -2,8 +2,8 @@ function [z_SS,q_SS,p_SS,u_SS,J_SS,FOM] = solve_HF_OCP_SS(mu_test,FOM)
 %Solve steady-state OCP with AtO Method
 
 
-[FOM] = evaluate_theta_terms(mu_test,FOM)
-[FOM] = assemble_ato_SS(FOM)
+[FOM] = evaluate_theta_terms(mu_test,FOM);
+[FOM] = assemble_ato_SS(FOM);
 
 [N_z,~]   = size(FOM.A_d);
 [N_q,N_u] = size(FOM.B);

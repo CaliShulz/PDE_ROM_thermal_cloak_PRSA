@@ -1,3 +1,6 @@
+function [] = assemble_problem(mesh_name)
+
+
 %% Assemble_problem.m 
 
 % Assemble data structures for selected mesh data
@@ -5,9 +8,6 @@
 % Generate m files in archive_data folder (that is generated if
 % nonexistent)
 
-clear all
-clc
-close all
 
 sslash = path_setup() ; % setup path 
 set(0,'DefaultFigureVisible','on');     % plot figures on screen
@@ -16,8 +16,7 @@ set(0,'DefaultFigureVisible','on');     % plot figures on screen
 % change this to "mesh_circular_cloak" , "mesh_circular_cloak_coarse 
 % "mesh_disconnected_cloak" or "mesh_boar_cloak" ( note that mesh_boar_cloak_fine is very fine and need a lot of RAM)
 
-mesh_name = "mesh_circular_cloak";  
-mesh_pet  = load(strcat(mesh_name,".mat"));
+mesh_pet  = load(mesh_name);
 vertices         = mesh_pet.to_save.p;
 boundaries       = mesh_pet.to_save.e;
 elements         = mesh_pet.to_save.t;
@@ -264,6 +263,8 @@ end
 mkdir('archive_data')
 data_set_name = strcat('archive_data',sslash,'FOM_setup_',mesh_name);
 save(data_set_name,'FOM','-v7.3');
+
+end
 
 
  

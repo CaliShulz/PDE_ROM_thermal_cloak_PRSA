@@ -10,7 +10,7 @@ function [z , q_opt , p_opt , u_opt , J , hist] = solve_HF_OCP(mu_test,FOM,param
 
 % Solve reference dynamics
 [FOM_ref] = assemble_time_dep_model(FOM.M,FOM.A_d_robin+FOM.A_d,zeros(N_z,1),FOM.F,zeros(N_z,1));
-[z] = integrate_state(zeros(1,param.dimt),param,FOM_ref);
+[z] = integrate_state(zeros(1,param.dimt),param,FOM_ref,1);
 
 % Project to get reference state in the OCP mesh
 FOM.z0_num  = FOM.E * z(:,end);

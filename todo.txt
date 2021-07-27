@@ -1,14 +1,13 @@
 
-- remove gray background from videos
-
-- solve Dirichlet blinking problem    OK due to CN method
-
-- change steep descent code, try with big Lambda inversion not faster
-
-- gitignore for each file but the meshes .mat
-
-- add video obstacle
 
 - test cases for different temperatures
 
+- plot different betas different cases eta comparison
+
 - change train dimension in T_POD_training to 25
+
+- align ModifiedNewton properly
+
+- check Newton if plot already first iteration and not initial
+
+- use mesh_coarse to check plots and working code!
