@@ -13,3 +13,5 @@
 - use mesh_coarse to check plots and working code!
 
 - effect of theta on adjoint and state
+
+- the smaller beta the more difficult the reduction

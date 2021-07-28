@@ -34,14 +34,14 @@ FOM.F_0     = FOM.F;
 FOM.F_ocp_0 = FOM.F_ocp;
 
 % Transient Parameters
-param.dt        = 0.025;
+param.dt        = 0.05;
 param.T         = 5;
 param.dimt      = param.T/param.dt + 1;
 param.max_iter  = 25;
 param.tol       = 1e-06;
 
 
-FOM.beta   = 1e-10;
+FOM.beta   = 1e-7;
 FOM.alfa_T = 0;                      % weight on terminal cost
 FOM.alfa_R = 1;                      % weight on running cost
 
@@ -83,11 +83,10 @@ dataset.U_opt   = U_opt;
 mu_test = [3.2 10000 50 1e-10];
 
 % Solve steady-state problem for adjoint final condition
+HF_OCP_Start = tic();
 [z_SS,q_SS,p_SS,u_SS,J_SS,FOM] = solve_HF_OCP_SS(mu_test,FOM);
-
-tic;
 [z , q_opt_in , p_opt_in , u_opt_in , J] = solve_HF_OCP(mu_test,FOM,param);
-tFOM = toc;
+tFOM = toc(HF_OCP_Start);
 
 % save test case
 test_case.mu_test = mu_test;
