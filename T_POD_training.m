@@ -51,7 +51,7 @@ Q_opt     = [];
 P_opt     = [];
 U_opt     = [];
 
-parfor (jj = 1:size(mu_train,1),3)    
+parfor (jj = 1:size(mu_train,1),10)    
 %for jj = 1:size(mu_train,1)
     mu_test      = mu_train(jj,:);
     FOM_temp     = FOM;            % create a copy of FOM to parallelize
@@ -82,12 +82,12 @@ dataset.U_opt   = U_opt;
 % Solve test FOM
 mu_test = [3.2 10000 50 1e-10];
 
+
+tFOM_Start = tic();
 % Solve steady-state problem for adjoint final condition
 [z_SS,q_SS,p_SS,u_SS,J_SS,FOM] = solve_HF_OCP_SS(mu_test,FOM);
-
-tic;
 [z , q_opt_in , p_opt_in , u_opt_in , J] = solve_HF_OCP(mu_test,FOM,param);
-tFOM = toc;
+tFOM = toc(tFOM_Start);
 
 % save test case
 test_case.mu_test = mu_test;

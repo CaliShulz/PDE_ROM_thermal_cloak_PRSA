@@ -13,3 +13,7 @@
 - use mesh_coarse to check plots and working code!
 
 - effect of theta on adjoint and state
+
+- Reduction with varying beta, 10^-7 paper, current sim 10^-10
+
+- Install ffmpeg on windows work station

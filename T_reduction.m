@@ -33,11 +33,11 @@ V_N.V_ref = ROM.V_ref;
 
 mu_test = test_case.mu_test;
 % Time Online Phase
-tic;
+tROM_Start = tic();
 % Solve Reduced SS problem
 [z_SS,q_SS,p_SS,u_SS,J_SS,ROM] = solve_HF_OCP_SS(mu_test,ROM);         % solve ROM steady-state
 [z_ref , q_opt, p_opt , u_opt , J] = solve_HF_OCP(mu_test,ROM,param);  % solve ROM transient
-tROM = toc;
+tROM = toc(tROM_Start);
 
 [~,N_pq_ROM]  = size(ROM.V_pq);
 [~,N_ref_ROM] = size(ROM.V_ref);
@@ -76,10 +76,11 @@ for jj = 1:max([N_pq_ROM,N_ref_ROM,N_u_ROM])
     [ROM] = project_system_RB(V_N,ROM,FOM);
 
     % Time Online Phase
-    tic;
+    tROM_Start = tic();
     [z_SS,q_SS,p_SS,u_SS,J_SS,ROM] = solve_HF_OCP_SS(mu_test,ROM);
     [z_ref , q_opt, p_opt , u_opt , J] = solve_HF_OCP(mu_test,ROM,param);
-    tROM = [ tROM toc];
+    tROM_End   = toc(tROM_Start);
+    tROM = [ tROM tROM_End];
     
     
     delta_q      = q_opt - ROM.E*z_ref;

@@ -391,15 +391,15 @@ try
     cd(folder_name)
     
     % tracking ROM vs FOM
-    system('ffmpeg -i video_tracking_fom.avi -i video_tracking_rom.avi -filter_complex vstack=inputs=2 tracking_stack.mp4');
+    system('ffmpeg -i video_tracking_fom.avi -i video_tracking_rom.avi -filter_complex vstack=inputs=2 -qscale 0 tracking_stack.mp4');
     
     % Reference vs Controlled vs Uncontrolled
-    system('ffmpeg -i video_reference_fom.avi -i video_controlled_fom.avi -i video_obstacle.avi -filter_complex hstack=inputs=3 obstacle_stack.mp4');
+    system('ffmpeg -i video_reference_fom.avi -i video_controlled_fom.avi -i video_obstacle.avi -filter_complex hstack=inputs=3 -qscale 0 obstacle_stack.mp4');
     
     % ROM vs FOM reference/state/control
     stack_32_str = strcat('ffmpeg -i video_reference_fom.avi  -i video_controlled_fom.avi       -i video_control_fom.avi -i video_reference_rom.avi  -i video_controlled_rom.avi       -i video_control_rom.avi ', ...
                           ' -filter_complex "[0:v][1:v][2:v]hstack=inputs=3[top]; [3:v][4:v][5:v]hstack=inputs=3[bottom]; [top][bottom]vstack=inputs=2[v]"' , ...
-                          ' -map "[v]" ROM_vs_FOM_stacked.mp4 ' ); 
+                          ' -qscale 0  -map "[v]" ROM_vs_FOM_stacked.avi ' ); 
     system(stack_32_str);
     
     cd(main_folder);
