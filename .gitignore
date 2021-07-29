@@ -4,6 +4,9 @@
 archive_sim/*
 archive_data/*
 
+archive_data_29_07
+archive_sim_29_07
+
 # exception to the rule
 !archive_sim/.gitkeep
 !archive_data/.gitkeep 
