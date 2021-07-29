@@ -37,11 +37,10 @@ for tt = 1:mu_tests
     
     
     % Solve steady-state problem for adjoint final condition
+    HF_OCP_Start = tic();
     [z_SS,q_SS,p_SS,u_SS,J_SS,FOM] = solve_HF_OCP_SS(mu_test,FOM);
-
-    tic;
     [z , q_opt_in , p_opt_in , u_opt_in , J] = solve_HF_OCP(mu_test,FOM,param);
-    tFOM = toc;
+    tFOM = toc(HF_OCP_Start);
 
     % save test case
     test_case.mu_test = mu_test;

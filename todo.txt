@@ -14,6 +14,10 @@
 
 - effect of theta on adjoint and state
 
+<<<<<<< HEAD
 - Reduction with varying beta, 10^-7 paper, current sim 10^-10
 
 - Install ffmpeg on windows work station
+=======
+- the smaller beta the more difficult the reduction
+>>>>>>> b0b185870c16aab05c10b4120018ca1643ef0a59
