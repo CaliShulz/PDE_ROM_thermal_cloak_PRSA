@@ -1,8 +1,8 @@
 
-Github repository to generate figures of paper sumbitted to PRSA
+Github repository to generate figures of the paper published on  PRSA
 
 " Fast Active Thermal Cloaking through PDE-constrainded optimization and reduced order modeling "
-
+https://doi.org/10.1098/rspa.2021.0813
 
 - mesh_meshname.mat files contains mesh information in matlab format for the three test cases
 
